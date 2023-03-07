@@ -207,7 +207,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.pengguna') }}" class="nav-link">
+                <a href="{{ route('admin.user.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pengguna</p>
                 </a>
@@ -333,7 +333,7 @@
     });
     $("#DataSiswa").DataTable({
 
-    })
+    });
 
     $(document).on('click','#openedit',function(){
         var url = "/superadmin/";
@@ -359,6 +359,27 @@
             console.log(id);
             $('#ConfirmDialog').modal('show');
             $('#delete').attr('action', url+data.id);
+        });
+    });
+    
+  });
+
+  $(function () {
+    $('#TableUser tbody tr').each(function (idx) {
+        $(this).children("td:eq(0)").html(idx + 1);
+    });
+    $("#TableUser").DataTable({
+
+    });
+
+    $(document).on('click','#opendeleteUser',function(){
+        var url = "/admin/user/";
+        var id= $(this).val();
+        $.get(url + id + '/edit', function (data) {
+            //success data
+            console.log(id);
+            $('#ConfirmDialog').modal('show');
+            $('#delete').attr('action', url+id);
         });
     });
     

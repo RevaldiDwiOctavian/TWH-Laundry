@@ -20,7 +20,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('superadmin', App\Http\Controllers\DataSiswaController::class)->middleware('checkRole:superadmin');
-
-Route::get('/admin/pengguna', [AdminController::class, 'pengguna_index'])->name('admin.pengguna');
+Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
+    Route::resource('user', App\Http\Controllers\UserController::class)->middleware('checkRole:admin');
+});
 
 Route::get('/', [GuestController::class, 'index'])->name('guest.lihat_status');

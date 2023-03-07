@@ -15,6 +15,18 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_outlet');
+            $table->string('kode_voucher');
+            $table->integer('id_member');
+            $table->date('tanggal');
+            $table->date('batas_waktu');
+            $table->date('tgl_bayar');
+            $table->integer('biaya_tambahan');
+            $table->double('diskon');
+            $table->integer('pajak');
+            $table->enum('status',['baru', 'proses', 'selesai', 'diambil']);
+            $table->enum('dibayar', ['dibayar', 'belum_dibayar']);
+            $table->integer('id_user');
             $table->timestamps();
         });
     }
